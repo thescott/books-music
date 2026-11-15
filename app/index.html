@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Books to Music</title>
+<style>
+  :root {
+    --bg: #f7f5f1; --panel: #ffffff; --ink: #1d1b18; --muted: #6b665e;
+    --line: #e4dfd6; --accent: #b4452f; --accent-ink: #ffffff; --chip: #f0ebe2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #151412; --panel: #1f1d1a; --ink: #eeeae3; --muted: #a39d93;
+      --line: #34312c; --accent: #e0704f; --accent-ink: #151412; --chip: #2b2925;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 20px 16px 8px; max-width: 1200px; margin: 0 auto; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+  header p { margin: 4px 0 0; color: var(--muted); }
+  main { max-width: 1200px; margin: 0 auto; padding: 12px 16px 40px;
+         display: grid; grid-template-columns: 340px 1fr; gap: 20px; }
+  @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  #books { max-height: calc(100vh - 120px); overflow: auto; position: sticky; top: 12px; }
+  @media (max-width: 800px) { #books { max-height: 45vh; position: static; } }
+  .book { display: block; width: 100%; text-align: left; border: 0; background: none; color: inherit;
+          font: inherit; padding: 10px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .book:hover { background: var(--chip); }
+  .book[aria-current="true"] { background: var(--chip); box-shadow: inset 3px 0 0 var(--accent); }
+  .book .t { font-weight: 600; }
+  .book .a, .meta { color: var(--muted); font-size: 13px; }
+  #result { min-height: 300px; }
+  .vibe { color: var(--muted); font-style: italic; margin: 4px 0 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .album { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+  .cover { aspect-ratio: 1; background: var(--chip); display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+  .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .album .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .album .ttl { font-weight: 600; }
+  .chip { display: inline-block; background: var(--chip); border-radius: 99px; padding: 1px 8px; font-size: 12px; color: var(--muted); }
+  .album a { color: var(--accent); text-decoration: none; font-size: 13px; margin-top: auto; }
+  .album a:hover { text-decoration: underline; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  button.primary { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 6px;
+                   padding: 7px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+  button.ghost { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 6px;
+                 padding: 6px 12px; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  .models { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .models button { border: 0; background: none; color: var(--ink); font: inherit; padding: 6px 12px; cursor: pointer; }
+  .models button + button { border-left: 1px solid var(--line); }
+  .models button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .models b { font-weight: 700; margin-right: 4px; }
+  .modelbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+              padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .empty, .err { color: var(--muted); padding: 40px 0; text-align: center; }
+  .err { color: var(--accent); }
+  #gate { max-width: 360px; margin: 12vh auto; padding: 24px; }
+  #gate input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 6px;
+                background: var(--bg); color: var(--ink); font: inherit; margin: 12px 0; }
+  .spinner { width: 18px; height: 18px; border: 2px solid var(--line); border-top-color: var(--accent);
+             border-radius: 50%; animation: spin .8s linear infinite; display: inline-block; vertical-align: middle; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Books to Music</h1>
+  <p>Pick an audiobook you've finished and get albums to listen to next.</p>
+</header>
+
+<form id="gate" class="panel" hidden>
+  <strong>Passphrase</strong>
+  <input id="pass" type="password" autocomplete="current-password" required>
+  <button class="primary" type="submit">Unlock</button>
+  <div id="gate-err" class="meta"></div>
+</form>
+
+<main id="app" hidden>
+  <nav id="books" class="panel" aria-label="Completed audiobooks"></nav>
+  <section class="panel" style="padding:18px">
+    <div class="modelbar">
+      <span class="meta">Model</span>
+      <div id="models" class="models" role="group" aria-label="Model"></div>
+    </div>
+    <div id="result"><div class="empty">Choose a book from the list.</div></div>
+  </section>
+</main>
+
+<script>
+const $ = (sel) => document.querySelector(sel);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v; else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else if (v != null) n.setAttribute(k, v);
+  }
+  for (const kid of kids) if (kid != null) n.append(kid);
+  return n;
+};
+
+let pass = "", model = "";
+try { pass = localStorage.getItem("bm-pass") || ""; model = localStorage.getItem("bm-model") || ""; } catch {}
+let currentBook = null;
+
+async function api(path, opts = {}) {
+  const r = await fetch(path, { ...opts, headers: { "content-type": "application/json", "x-passphrase": pass } });
+  const data = await r.json().catch(() => ({ error: "Bad response" }));
+  if (r.status === 401) { showGate("Wrong passphrase."); throw new Error("unauthorized"); }
+  if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
+  return data;
+}
+
+function showGate(msg = "") {
+  $("#app").hidden = true; $("#gate").hidden = false; $("#gate-err").textContent = msg; $("#pass").focus();
+}
+
+$("#gate").addEventListener("submit", (e) => {
+  e.preventDefault(); pass = $("#pass").value;
+  try { localStorage.setItem("bm-pass", pass); } catch {}
+  loadBooks();
+});
+
+async function loadBooks() {
+  let data;
+  try { data = await api("/api/books"); } catch { return; }
+  $("#gate").hidden = true; $("#app").hidden = false;
+  renderModels(data.models);
+  const nav = $("#books"); nav.replaceChildren();
+  for (const b of data.books) {
+    const status = b.status === "Finished" ? "Finished" : `${b.time_left_minutes} min left`;
+    nav.append(el("button", { class: "book", "data-id": b.id, onclick: () => suggest(b) },
+      el("div", { class: "t" }, b.title),
+      el("div", { class: "a" }, `${b.authors.join(", ")} · ${status}`)));
+  }
+}
+
+// A/B model switch; switching re-runs the current book on the other model.
+function renderModels(models) {
+  if (!models.some((m) => m.key === model)) model = models[0].key;
+  const box = $("#models"); box.replaceChildren();
+  for (const m of models) {
+    box.append(el("button", { type: "button", "data-key": m.key, "aria-pressed": m.key === model, onclick: () => {
+      model = m.key;
+      try { localStorage.setItem("bm-model", model); } catch {}
+      box.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.key === model));
+      if (currentBook) suggest(currentBook);
+    } }, el("b", {}, m.key), m.label));
+  }
+}
+
+// Per-page-load cache so flipping between books or models doesn't re-hit the API.
+const suggestions = new Map();
+let pending = "";
+
+async function suggest(book, refresh = false) {
+  currentBook = book;
+  const want = `${model}:${book.id}`;
+  pending = want;
+  document.querySelectorAll(".book").forEach((n) => n.setAttribute("aria-current", n.dataset.id == book.id));
+  const out = $("#result");
+  let data = refresh ? null : suggestions.get(want);
+  if (!data) {
+    const label = $(`#models button[data-key="${model}"]`)?.textContent.slice(1) || model;
+    out.replaceChildren(el("div", { class: "empty" }, el("span", { class: "spinner" }), "  Asking ", label, " about ", book.title, "…"));
+    try {
+      data = await api("/api/suggest", { method: "POST", body: JSON.stringify({ book_id: book.id, model, refresh }) });
+    } catch (e) {
+      if (e.message !== "unauthorized" && pending === want) out.replaceChildren(el("div", { class: "err" }, e.message));
+      return;
+    }
+    suggestions.set(want, data);
+    if (pending !== want) return; // user switched book or model while this one loaded
+  }
+  const verified = data.albums.filter((a) => a.discogs).length;
+  const refreshBtn = el("button", { class: "ghost", onclick: () => suggest(book, true) }, "New suggestions");
+  out.replaceChildren(
+    el("div", { class: "row" }, el("h2", { style: "margin:0;font-size:20px" }, book.title), refreshBtn),
+    el("div", { class: "meta" }, book.authors.join(", "), ` · ${data.model_key} ${data.model_label}`,
+       ` · ${verified}/${data.albums.length} found on Discogs`,
+       data.cached ? ` · saved ${new Date(data.generated_at).toLocaleDateString()}` : ""),
+    el("p", { class: "vibe" }, data.book_vibe),
+    el("div", { class: "grid" }, ...data.albums.map(albumCard)));
+}
+
+function albumCard(a) {
+  const d = a.discogs;
+  const cover = el("div", { class: "cover" });
+  if (d && d.cover && !d.cover.includes("spacer.gif")) {
+    cover.append(el("img", { src: d.cover, alt: `${a.album} cover`, loading: "lazy", referrerpolicy: "no-referrer" }));
+  } else cover.append("No cover art");
+  const year = (d && d.year) || a.year;
+  return el("article", { class: "album" }, cover,
+    el("div", { class: "body" },
+      el("div", { class: "ttl" }, a.album),
+      el("div", { class: "meta" }, a.artist, year ? ` · ${year}` : ""),
+      el("div", {}, el("span", { class: "chip" }, a.connection)),
+      el("div", {}, a.reason),
+      d ? el("a", { href: d.url, target: "_blank", rel: "noopener" }, "View on Discogs →")
+        : el("a", { href: a.discogs_search_url, target: "_blank", rel: "noopener" }, "Not matched — search Discogs →")));
+}
+
+pass ? loadBooks() : showGate();
+</script>
+</body>
+</html>

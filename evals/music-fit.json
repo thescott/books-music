@@ -1,0 +1,56 @@
+{
+  "data": {
+    "id": "music-fit",
+    "type": "evaluator_config",
+    "attributes": {
+      "eval_name": "music-fit",
+      "category": "Custom",
+      "llm_provider": {
+        "integration_provider": "datadog",
+        "model_name": "claude-haiku-5-5"
+      },
+      "target": {
+        "application_name": "books-music",
+        "enabled": true,
+        "eval_scope": "span",
+        "root_spans_only": true,
+        "sampling_percentage": 100
+      },
+      "llm_judge_config": {
+        "inference_params": { "temperature": 0, "max_tokens": 2000 },
+        "parsing_type": "structured_output",
+        "prompt_template": [
+          {
+            "role": "system",
+            "content": "You are a veteran music journalist and record-store owner judging album recommendations made for someone who just finished an audiobook.\n\nThe input describes the book: its title, authors, and sometimes a short description. Treat that description as true, even if you remember a different book with the same title. The output is the list of recommended albums, each written as \"Artist - Album\".\n\nJudge the list as a whole on two things, the first being the most important:\n1. Legitimacy: is each album real, actually released by that artist, with the title written correctly? Invented albums, misattributed albums, or song titles presented as albums are serious errors.\n2. Fit: does each pick connect to the book? For a music memoir or music history, the essential records of that artist or scene should come first. For other books, picks should match the themes, setting, era or emotional tone.\n\nIn your reasoning, name every album you think is invented or misattributed, and every pick that doesn't fit, before choosing a rating."
+          },
+          {
+            "role": "user",
+            "content": "Book:\n{{span_input}}\n\nRecommended albums:\n{{span_output}}"
+          }
+        ],
+        "output_schema": {
+          "type": "object",
+          "required": ["reasoning", "categorical_eval"],
+          "properties": {
+            "reasoning": {
+              "type": "string",
+              "description": "Brief critique naming invented, misattributed or poorly fitting picks."
+            },
+            "categorical_eval": {
+              "anyOf": [
+                { "const": "Excellent fit", "description": "All albums are real and correctly attributed, and every pick clearly connects to the book." },
+                { "const": "Good fit", "description": "Albums are real; at most one pick is a stretch or has a minor title error." },
+                { "const": "Weak fit", "description": "Several picks are generic or loosely connected, or one album appears to be invented or misattributed." },
+                { "const": "Poor or invented", "description": "Two or more albums appear invented or misattributed, or the list misunderstands the book." }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "assessment_criteria": { "pass_values": ["Excellent fit", "Good fit"] },
+        "user_specified_json_post_processing_function": ""
+      }
+    }
+  }
+}

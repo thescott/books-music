@@ -1,0 +1,478 @@
+{
+  "source": "Audible listen history",
+  "count": 46,
+  "items": [
+    {
+      "id": 1,
+      "title": "Dungeon Crawler Carl",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 583,
+      "last_listened": "2026-11-04"
+    },
+    {
+      "id": 2,
+      "title": "A Parade of Horribles",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 12,
+      "last_listened": "2026-10-13"
+    },
+    {
+      "id": 3,
+      "title": "This Inevitable Ruin",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 1720,
+      "last_listened": "2026-09-27"
+    },
+    {
+      "id": 4,
+      "title": "The Divine Comedy",
+      "authors": [
+        "Clive James (translator)",
+        "Dante Alighieri"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 755,
+      "last_listened": "2026-09-11"
+    },
+    {
+      "id": 5,
+      "title": "The Divine Comedy",
+      "authors": [
+        "Dante Alighieri"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 247,
+      "last_listened": "2026-09-11"
+    },
+    {
+      "id": 6,
+      "title": "We Are Legion (We Are Bob)",
+      "authors": [
+        "Dennis E. Taylor"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 333,
+      "last_listened": "2026-09-02"
+    },
+    {
+      "id": 7,
+      "title": "The Eye of the Bedlam Bride",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 16,
+      "last_listened": "2026-08-29"
+    },
+    {
+      "id": 8,
+      "title": "You with the Sad Eyes",
+      "authors": [
+        "Christina Applegate"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2026-08-18"
+    },
+    {
+      "id": 9,
+      "title": "The Butcher's Masquerade",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 565,
+      "last_listened": "2026-08-10"
+    },
+    {
+      "id": 10,
+      "title": "The Gate of the Feral Gods",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 32,
+      "last_listened": "2026-07-12"
+    },
+    {
+      "id": 11,
+      "title": "The Dungeon Anarchist's Cookbook",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 10,
+      "last_listened": "2026-06-29"
+    },
+    {
+      "id": 12,
+      "title": "Carl's Doomsday Scenario",
+      "authors": [
+        "Matt Dinniman"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 6,
+      "last_listened": "2026-06-11"
+    },
+    {
+      "id": 13,
+      "title": "Personal Branding for Introverts",
+      "authors": [
+        "Goldie Chan"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 233,
+      "last_listened": "2026-04-18"
+    },
+    {
+      "id": 14,
+      "title": "Storyworthy",
+      "authors": [
+        "Matthew Dicks",
+        "Dan Kennedy (foreword)"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 6,
+      "last_listened": "2026-04-18"
+    },
+    {
+      "id": 15,
+      "title": "The Royal We",
+      "authors": [
+        "Roddy Bottum"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 5,
+      "last_listened": "2026-03-29"
+    },
+    {
+      "id": 16,
+      "title": "Star Wars: Luke and the Lost Jedi Temple",
+      "authors": [
+        "Lucasfilm Press"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 6,
+      "last_listened": "2026-03-22"
+    },
+    {
+      "id": 17,
+      "title": "Star Wars: Master of Evil",
+      "authors": [
+        "Adam Christopher"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 9,
+      "last_listened": "2026-01-02"
+    },
+    {
+      "id": 18,
+      "title": "Thomas Paine Classic Collection",
+      "authors": [
+        "Thomas Paine"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 1016,
+      "last_listened": "2025-11-10"
+    },
+    {
+      "id": 19,
+      "title": "The Creative Act",
+      "authors": [
+        "Rick Rubin"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 313,
+      "last_listened": "2025-11-02"
+    },
+    {
+      "id": 20,
+      "title": "Blood Meridian",
+      "authors": [
+        "Cormac McCarthy"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 754,
+      "last_listened": "2025-11-02"
+    },
+    {
+      "id": 21,
+      "title": "The Culture Map",
+      "authors": [
+        "Erin Meyer"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 457,
+      "last_listened": "2025-10-30"
+    },
+    {
+      "id": 22,
+      "title": "Murder Ballads",
+      "authors": [
+        "Katy Horan"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 2,
+      "last_listened": "2025-10-12"
+    },
+    {
+      "id": 23,
+      "title": "Tearing Down the Orange Curtain",
+      "authors": [
+        "Nate Jackson",
+        "Daniel Kohn"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 8,
+      "last_listened": "2025-09-26"
+    },
+    {
+      "id": 24,
+      "title": "Star Wars: Trials of the Jedi (The High Republic)",
+      "authors": [
+        "Charles Soule"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 53,
+      "last_listened": "2025-08-24"
+    },
+    {
+      "id": 25,
+      "title": "Star Wars: The Acolyte: Wayseeker",
+      "authors": [
+        "Justina Ireland"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 5,
+      "last_listened": "2025-07-28"
+    },
+    {
+      "id": 26,
+      "title": "Fahrenheit-182",
+      "authors": [
+        "Mark Hoppus",
+        "Dan Ozzi"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 56,
+      "last_listened": "2025-06-16"
+    },
+    {
+      "id": 27,
+      "title": "Star Wars: The High Republic: Into the Light",
+      "authors": [
+        "Claudia Gray"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 5,
+      "last_listened": "2025-05-29"
+    },
+    {
+      "id": 28,
+      "title": "Star Wars: The High Republic: Haunted Starlight",
+      "authors": [
+        "Lucasfilm Press",
+        "George Mann"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 2,
+      "last_listened": "2025-04-16"
+    },
+    {
+      "id": 29,
+      "title": "Furiously Happy",
+      "authors": [
+        "Jenny Lawson"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 447,
+      "last_listened": "2025-03-22"
+    },
+    {
+      "id": 30,
+      "title": "Star Wars: The High Republic: Beware the Nameless",
+      "authors": [
+        "Zoraida Córdova"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 384,
+      "last_listened": "2025-03-13"
+    },
+    {
+      "id": 31,
+      "title": "Star Wars: The High Republic: Tears of the Nameless",
+      "authors": [
+        "George Mann"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 811,
+      "last_listened": "2025-03-13"
+    },
+    {
+      "id": 32,
+      "title": "Star Wars: Tempest Breaker (The High Republic)",
+      "authors": [
+        "Cavan Scott"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2025-03-13"
+    },
+    {
+      "id": 33,
+      "title": "The Midnight Library",
+      "authors": [
+        "Matt Haig"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2024-12-06"
+    },
+    {
+      "id": 34,
+      "title": "The Book of General Ignorance",
+      "authors": [
+        "John Mitchinson",
+        "John Lloyd"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 192,
+      "last_listened": "2024-10-14"
+    },
+    {
+      "id": 35,
+      "title": "Cloud FinOps, 2nd Edition",
+      "authors": [
+        "J.R. Storment",
+        "Mike Fuller"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 758,
+      "last_listened": "2024-09-25"
+    },
+    {
+      "id": 36,
+      "title": "A Furious Devotion",
+      "authors": [
+        "Richard Balls"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 497,
+      "last_listened": "2024-09-04"
+    },
+    {
+      "id": 37,
+      "title": "Greek Mythology",
+      "authors": [
+        "Simon Lopez"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2024-08-29"
+    },
+    {
+      "id": 38,
+      "title": "Star Wars: Temptation of the Force (The High Republic)",
+      "authors": [
+        "Tessa Gratton"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2024-08-03"
+    },
+    {
+      "id": 39,
+      "title": "The Power of Myth: Programs 1-6",
+      "authors": [
+        "Joseph Campbell",
+        "Bill Moyers"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 276,
+      "last_listened": "2024-06-06"
+    },
+    {
+      "id": 40,
+      "title": "It's So Easy",
+      "authors": [
+        "Duff McKagan"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2024-05-20"
+    },
+    {
+      "id": 41,
+      "title": "Defy the Storm",
+      "authors": [
+        "Tessa Gratton",
+        "Justina Ireland"
+      ],
+      "status": "Finished",
+      "time_left_minutes": null,
+      "last_listened": "2024-04-21"
+    },
+    {
+      "id": 42,
+      "title": "Deming's Journey to Profound Knowledge",
+      "authors": [
+        "John Willis"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 592,
+      "last_listened": "2024-03-18"
+    },
+    {
+      "id": 43,
+      "title": "The Kind Worth Killing",
+      "authors": [
+        "Peter Swanson"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 468,
+      "last_listened": "2024-03-02"
+    },
+    {
+      "id": 44,
+      "title": "Star Wars: The Eye of Darkness (The High Republic)",
+      "authors": [
+        "George Mann"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 9,
+      "last_listened": "2024-01-26"
+    },
+    {
+      "id": 45,
+      "title": "Site Reliability Engineering",
+      "authors": [
+        "Betsy Beyer",
+        "Chris Jones",
+        "Jennifer Petoff",
+        "Niall Richard Murphy"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 1171,
+      "last_listened": "2023-11-10"
+    },
+    {
+      "id": 46,
+      "title": "Unleash the Power of Storytelling",
+      "authors": [
+        "Rob Biesenbach"
+      ],
+      "status": "In progress",
+      "time_left_minutes": 24,
+      "last_listened": "2023-11-04"
+    }
+  ]
+}

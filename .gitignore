@@ -1,0 +1,15 @@
+# Personal project memory (not shared)
+MEMORY.md
+
+# Terraform: state and plans can contain resource details; providers are re-downloaded
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/tfplan
+terraform/*.tfplan
+terraform/crash.log
+
+# Python / OS
+__pycache__/
+*.pyc
+.DS_Store
